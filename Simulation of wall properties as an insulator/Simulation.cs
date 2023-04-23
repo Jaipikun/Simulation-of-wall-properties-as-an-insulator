@@ -14,8 +14,8 @@ namespace Simulation_of_wall_properties_as_an_insulator
 
         private double MatBetterConduct { get;set; }
         private double MatWorseConduct { get; set; }
-        private double DiffConstant { get; set; }
-        private double Mat1Width { get; set; }
+        public double DiffConstant { get; set; }
+        public double Mat1Width { get; set; }
 
         public double[] PositionX { get; set; }
 
@@ -46,8 +46,6 @@ namespace Simulation_of_wall_properties_as_an_insulator
         {
             this.MatBetterConduct = matBetterConduct;
             this.MatWorseConduct = matWorseConduct;
-            DiffConstant = 5.0;
-            Mat1Width = 0.5;
 
 
 
@@ -118,7 +116,8 @@ namespace Simulation_of_wall_properties_as_an_insulator
                 case 4:
                     double y = MatBetterConduct / (1 + Math.Exp(x - Mat1Width / DiffConstant)) + MatWorseConduct;
                     return y;
-
+                case 5:
+                    return 1;
                 default:
                     return 1;
             }
@@ -140,7 +139,8 @@ namespace Simulation_of_wall_properties_as_an_insulator
                     double SupVal = (x - Mat1Width) / DiffConstant;
                     double y = Math.Exp(SupVal) * (1 - (MatBetterConduct / DiffConstant)) / Math.Pow(1 + Math.Exp(SupVal), 2);
                     return y;
-
+                case 5:
+                    return 0;
                 default:
                     return 0;
             }

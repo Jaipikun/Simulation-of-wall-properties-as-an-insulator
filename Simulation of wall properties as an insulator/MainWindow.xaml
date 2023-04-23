@@ -49,23 +49,29 @@
                 </TransformGroup>
             </TextBox.RenderTransform>
         </TextBox>
-        <TextBox Name="D1"  FontSize ="20" HorizontalAlignment="Left" Height="30" Margin="1078,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
-        <TextBox Name="D2" FontSize ="20" HorizontalAlignment="Left" Height="30" Margin="1078,113,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
-        <TextBox Name ="NumberOfPointsInput" FontSize ="20" HorizontalAlignment="Left" Height="50" Margin="1162,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="100"/>
-        <TextBox Name ="GridConstantInput"  FontSize ="20" HorizontalAlignment="Left" Height="50" Margin="1163,398,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100"/>
-        <Button Name="StartStopButton" Content="Start" HorizontalAlignment="Left" Height="50" Margin="1063,494,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click"/>
+        <TextBox Name="D1"  FontSize ="20" HorizontalAlignment="Left" Height="30" Margin="1078,109,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
+        <TextBox Name="D2" FontSize ="20" HorizontalAlignment="Left" Height="30" Margin="1078,149,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="80"/>
+        <TextBox Name ="NumberOfPointsInput" FontSize ="20" HorizontalAlignment="Left" Height="50" Margin="1156,360,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100"/>
+        <TextBox Name ="GridConstantInput"  FontSize ="20" HorizontalAlignment="Left" Height="50" Margin="1156,420,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="100"/>
+        <Button Name="StartStopButton" Content="Start" HorizontalAlignment="Left" Height="50" Margin="1051,530,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click"/>
         <ScottPlot:WpfPlot Name="WPF1" HorizontalAlignment="Left" Height="600" Margin="196,59,0,0" VerticalAlignment="Top" Width="850"/>
-        <TextBox FontSize="14" Name ="DataTextBox" IsEnabled="False" HorizontalAlignment="Left" Height="60" Margin="50,618,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="200" BorderBrush="#00000000"/>
-        <TextBox FontSize ="14" HorizontalAlignment="Left" Height="50" Margin="1051,0,0,0" TextWrapping="Wrap" Text="Liczba punktów - N" VerticalAlignment="Center" Width="100" FontWeight="Bold" BorderBrush="#00000000"/>
-        <TextBox FontSize ="14" HorizontalAlignment="Left" Height="26" Margin="1051,410,0,0" TextWrapping="Wrap" Text="Stała siatki - h" VerticalAlignment="Top" Width="100" FontWeight="Bold" BorderBrush="#00000000"/>
-        <ComboBox FontSize="20" Name="FunctionList" HorizontalAlignment="Left" Height="40" Margin="1063,14,0,0" VerticalAlignment="Top" Width="200"/>
-        <Label FontSize="20" Content="F:" HorizontalAlignment="Left" Height="40" Margin="1033,14,0,0" VerticalAlignment="Top" Width="25"/>
-        <Label FontSize="20" Content="D1:" HorizontalAlignment="Left" Height="40" Margin="1033,68,0,0" VerticalAlignment="Top" Width="40"/>
-        <Label FontSize="20" Content="D2:" HorizontalAlignment="Left" Height="40" Margin="1033,108,0,0" VerticalAlignment="Top" Width="40"/>
-        <ComboBox  FontSize="20" Name="GraphDataY" HorizontalAlignment="Left" Height="40" Margin="243,14,0,0" VerticalAlignment="Top" Width="200"/>
-        <ComboBox  FontSize="20" Name="GraphDataX" HorizontalAlignment="Left" Height="40" Margin="521,14,0,0" VerticalAlignment="Top" Width="200"/>
+        <TextBox FontSize="14" Name ="DataTextBox" IsEnabled="False" HorizontalAlignment="Left" Height="60" Margin="50,618,0,0" TextWrapping="Wrap" Text="T - lewa:   273,15                       T - prawa: 273,15" VerticalAlignment="Top" Width="200" BorderBrush="#00000000"/>
+        <TextBox IsEnabled="False" FontSize ="14" HorizontalAlignment="Left" Height="50" Margin="1046,360,0,0" TextWrapping="Wrap" Text="Liczba punktów - N" VerticalAlignment="Top" Width="100" FontWeight="Bold" BorderBrush="#00000000"/>
+        <TextBox IsEnabled="False" FontSize ="14" HorizontalAlignment="Left" Height="26" Margin="1044,432,0,0" TextWrapping="Wrap" Text="Stała siatki - h" VerticalAlignment="Top" Width="100" FontWeight="Bold" BorderBrush="#00000000"/>
+        <ComboBox SelectionChanged="FunctionList_SelectionChanged"  FontSize="20" Name="FunctionList" HorizontalAlignment="Left" Height="40" Margin="1063,14,0,0" VerticalAlignment="Top" Width="200"/>
+        <Label FontSize="20" Content="Funkcja:" HorizontalAlignment="Left" Height="40" Margin="974,14,0,0" VerticalAlignment="Top" Width="85"/>
+        <Label FontSize="20" Content="D1:" HorizontalAlignment="Left" Height="40" Margin="1033,104,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label FontSize="20" Content="D2:" HorizontalAlignment="Left" Height="40" Margin="1033,144,0,0" VerticalAlignment="Top" Width="40"/>
+        <ComboBox  FontSize="20" Name="GraphDataY" HorizontalAlignment="Left" Height="40" Margin="243,14,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="GraphDataXY_SelectionChanged"/>
+        <ComboBox  FontSize="20" Name="GraphDataX" HorizontalAlignment="Left" Height="40" Margin="521,14,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="GraphDataXY_SelectionChanged"/>
         <Label FontSize="20" Content="X" HorizontalAlignment="Left" Height="40" Margin="491,14,0,0" VerticalAlignment="Top" Width="25"/>
         <Label FontSize="20" Content="Y" HorizontalAlignment="Left" Height="40" Margin="213,14,0,0" VerticalAlignment="Top" Width="25"/>
+        <TextBox Name="WidthTxtBox"  FontSize ="20" HorizontalAlignment="Left" Height="30" Margin="1078,193,0,0" Text="1" VerticalAlignment="Top" Width="80" TextChanged="WidthTxtBox_TextChanged" MaxLines="1"/>
+        <Label Name="WidthLabel" FontSize="20" Content="b:" HorizontalAlignment="Left" Height="40" Margin="1033,189,0,0" VerticalAlignment="Top" Width="40"/>
+        <TextBox Name="TauTxtBox"  FontSize ="20" HorizontalAlignment="Left" Height="30" Margin="1078,239,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="80" TextChanged="TauTxtBox_TextChanged"/>
+        <Label Name="TauLabel" FontSize="20" Content="τ:" HorizontalAlignment="Left" Height="40" Margin="1033,233,0,0" VerticalAlignment="Top" Width="40"/>
+        <Slider Name="WidthSlider" HorizontalAlignment="Left" Height="22" Margin="1164,201,0,0" VerticalAlignment="Top" Width="92" ValueChanged="WidthSlider_ValueChanged" Minimum="0.1" Value="1" Maximum="100"/>
+        <Slider Name="TauSlider" HorizontalAlignment="Left" Height="24" Margin="1164,245,0,0" VerticalAlignment="Top" Width="92" ValueChanged="TauSlider_ValueChanged" SmallChange="0.05" Value="1" Maximum="100" Minimum="0.1"/>
 
 
     </Grid>
