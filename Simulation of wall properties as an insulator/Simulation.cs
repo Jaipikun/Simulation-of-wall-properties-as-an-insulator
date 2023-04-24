@@ -79,6 +79,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
                 AMinus[i] = ThermalConductivity[i] - H * DerivativeOfThermalConductivity[i] / 2.0;
                 AZero[i] = -2.0 * ThermalConductivity[i];
                 APlus[i] = ThermalConductivity[i] + H * DerivativeOfThermalConductivity[i] / 2.0;
+
                 RightSideOfDifferentialEquation[i] = RightSideOfDifferentialEquationFunction(PositionX[i]);
             }
 
@@ -137,7 +138,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
                     return -MatBetterConduct * Math.Sin(x);
                 case 4:
                     double SupVal = (x - Mat1Width) / DiffConstant;
-                    double y = Math.Exp(SupVal) * (1 - (MatBetterConduct / DiffConstant)) / Math.Pow(1 + Math.Exp(SupVal), 2);
+                    double y = -Math.Exp(SupVal) * MatBetterConduct /( Mat1Width * Math.Pow(1 + Math.Exp(SupVal), 2));
                     return y;
                 case 5:
                     return 0;
