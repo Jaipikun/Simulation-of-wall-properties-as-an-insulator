@@ -115,7 +115,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
                 case 3:
                     return MatBetterConduct * Math.Cos(x) + MatWorseConduct;
                 case 4:
-                    double y = MatBetterConduct / (1 + Math.Exp(x - Mat1Width / DiffConstant)) + MatWorseConduct;
+                    double y = MatBetterConduct / (1 + Math.Exp((x - Mat1Width) / DiffConstant)) + MatWorseConduct;
                     return y;
                 case 5:
                     return 1;
