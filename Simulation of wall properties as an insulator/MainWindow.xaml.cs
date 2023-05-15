@@ -118,7 +118,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show("Błędne dane.");
+                        //MessageBox.Show("Błędne dane.");
                         
                     }
                     
