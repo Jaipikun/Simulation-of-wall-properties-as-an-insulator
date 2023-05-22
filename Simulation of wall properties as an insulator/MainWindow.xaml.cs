@@ -33,6 +33,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
         private Dictionary<string,int> AvailableFunction;
         private Dictionary<string, int> PossibleGraph;
         private bool Initalized = false;
+        private bool InverseX = false;
 
         public MainWindow()
         {
@@ -113,6 +114,10 @@ namespace Simulation_of_wall_properties_as_an_insulator
                 {
                     try
                     {
+                        if (InverseX)
+                        {
+                            wall.InverseX();
+                        }
                         WPF1.Plot.AddScatter(wall.GetData(xID), wall.GetData(yID));
                         WPF1.Refresh();
                     }
@@ -272,6 +277,21 @@ namespace Simulation_of_wall_properties_as_an_insulator
             
         }
 
-        
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                this.InverseX = (bool)InverseXCheckBox.IsChecked;
+            }
+            catch (Exception)
+            {
+
+            }
+            if(isRunning)
+            {
+                Plot();
+            }
+            
+        }
     }
 }

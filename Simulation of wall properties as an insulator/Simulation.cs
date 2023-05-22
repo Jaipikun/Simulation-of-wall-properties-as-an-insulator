@@ -12,7 +12,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
         public int N { get; set; }
         public int FunctionID { get; set; }
 
-        private double MatBetterConduct { get;set; }
+        private double MatBetterConduct { get; set; }
         private double MatWorseConduct { get; set; }
         public double DiffConstant { get; set; }
         public double Mat1Width { get; set; }
@@ -20,11 +20,11 @@ namespace Simulation_of_wall_properties_as_an_insulator
         public double[] PositionX { get; set; }
 
 
-        public double[] ThermalConductivity{get; set;}
-        public double[] DerivativeOfThermalConductivity { get; set;}
+        public double[] ThermalConductivity { get; set; }
+        public double[] DerivativeOfThermalConductivity { get; set; }
 
-        private double[] AMinus {  get; set; }
-        private double[] AZero{ get; set; }
+        private double[] AMinus { get; set; }
+        private double[] AZero { get; set; }
         private double[] APlus { get; set; }
         private double[] RightSideOfDifferentialEquation { get; set; }
         public double[] TemperatureInsideOfWall { get; set; }
@@ -35,14 +35,14 @@ namespace Simulation_of_wall_properties_as_an_insulator
 
 
 
-        public Simulation(double h,int n,int functionID) 
+        public Simulation(double h, int n, int functionID)
         {
             this.N = n;
             this.H = h;
             this.FunctionID = functionID;
         }
 
-        public void Calculate(double LeftSideTemperature,double RightSideTemperature, double matBetterConduct, double matWorseConduct)
+        public void Calculate(double LeftSideTemperature, double RightSideTemperature, double matBetterConduct, double matWorseConduct)
         {
             this.MatBetterConduct = matBetterConduct;
             this.MatWorseConduct = matWorseConduct;
@@ -64,12 +64,12 @@ namespace Simulation_of_wall_properties_as_an_insulator
             GaussMethod();
         }
 
-        private void InitialCalculations(double LeftSideTemperature,double RightSideTemperature)
+        private void InitialCalculations(double LeftSideTemperature, double RightSideTemperature)
         {
             TemperatureInsideOfWall[0] = LeftSideTemperature;    //Boundary Value
-            TemperatureInsideOfWall[N-1] = RightSideTemperature; //
+            TemperatureInsideOfWall[N - 1] = RightSideTemperature; //
 
-            for(int i = 0; i < N; i++)
+            for (int i = 0; i < N; i++)
             {
                 PositionX[i] = H * i; // Calculate xs
 
@@ -89,14 +89,14 @@ namespace Simulation_of_wall_properties_as_an_insulator
             Alpha[N - 2] = 0.0;
             Beta[N - 2] = TemperatureInsideOfWall[N - 1];
 
-            for(int i = N-2; i>0; i--)
+            for (int i = N - 2; i > 0; i--)
             {
                 Gamma[i] = -1.0 / (AZero[i] + APlus[i] * Alpha[i]);
                 Alpha[i - 1] = AMinus[i] * Gamma[i];
                 Beta[i - 1] = (APlus[i] * Beta[i] - RightSideOfDifferentialEquation[i]) * Gamma[i];
             }
 
-            for(int i = 0; i < N - 2; i++)
+            for (int i = 0; i < N - 2; i++)
             {
                 TemperatureInsideOfWall[i + 1] = Alpha[i] * TemperatureInsideOfWall[i] + Beta[i];
             }
@@ -109,7 +109,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
                 case 0:
                     return MatBetterConduct * x + MatWorseConduct;
                 case 1:
-                    return MatBetterConduct *( x*x +x ) + MatWorseConduct;
+                    return MatBetterConduct * (x * x + x) + MatWorseConduct;
                 case 2:
                     return MatBetterConduct * Math.Sin(x) + MatWorseConduct;
                 case 3:
@@ -122,7 +122,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
                 default:
                     return 1;
             }
-            
+
         }
         private double DerivativeOfFunction(double x)
         {
@@ -138,7 +138,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
                     return -MatBetterConduct * Math.Sin(x);
                 case 4:
                     double SupVal = (x - Mat1Width) / DiffConstant;
-                    double y = -Math.Exp(SupVal) * MatBetterConduct /( Mat1Width * Math.Pow(1 + Math.Exp(SupVal), 2));
+                    double y = -Math.Exp(SupVal) * MatBetterConduct / (Mat1Width * Math.Pow(1 + Math.Exp(SupVal), 2));
                     return y;
                 case 5:
                     return 0;
@@ -153,9 +153,9 @@ namespace Simulation_of_wall_properties_as_an_insulator
 
         public double[] GetData(int DataID)
         {
-            switch(DataID)
+            switch (DataID)
             {
-                
+
                 case 0:
                     return this.PositionX;
                 case 1:
@@ -166,6 +166,16 @@ namespace Simulation_of_wall_properties_as_an_insulator
                     return this.TemperatureInsideOfWall;
                 default: return null;
             }
+        }
+        public void InverseX()
+        {
+            double[] temp = new double[this.PositionX.Length];
+            for(int i =  1; i <= this.PositionX.Length; i++)
+            {
+                temp[this.PositionX.Length-i] = this.PositionX[i-1];
+            }
+            this.PositionX = temp;
+            
         }
 
     }

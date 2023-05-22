@@ -70,8 +70,9 @@
         <Label Name="WidthLabel" FontSize="20" Content="b:" HorizontalAlignment="Left" Height="40" Margin="1033,189,0,0" VerticalAlignment="Top" Width="40"/>
         <TextBox Name="TauTxtBox"  FontSize ="20" HorizontalAlignment="Left" Height="30" Margin="1078,239,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="80" TextChanged="TauTxtBox_TextChanged"/>
         <Label Name="TauLabel" FontSize="20" Content="τ:" HorizontalAlignment="Left" Height="40" Margin="1033,233,0,0" VerticalAlignment="Top" Width="40"/>
-        <Slider Name="WidthSlider" HorizontalAlignment="Left" Height="22" Margin="1164,201,0,0" VerticalAlignment="Top" Width="92" ValueChanged="WidthSlider_ValueChanged" Minimum="0.1" Value="1" Maximum="100"/>
-        <Slider Name="TauSlider" HorizontalAlignment="Left" Height="24" Margin="1164,245,0,0" VerticalAlignment="Top" Width="92" ValueChanged="TauSlider_ValueChanged" SmallChange="0.05" Value="1" Maximum="100" Minimum="0.1"/>
+        <Slider Name="WidthSlider" HorizontalAlignment="Left" Height="22" Margin="1164,201,0,0" VerticalAlignment="Top" Width="92" ValueChanged="WidthSlider_ValueChanged" Minimum="0.1" Value="1"/>
+        <Slider Name="TauSlider" HorizontalAlignment="Left" Height="24" Margin="1164,245,0,0" VerticalAlignment="Top" Width="92" ValueChanged="TauSlider_ValueChanged" SmallChange="0.05" Value="1" Maximum="100" Minimum="0.001"/>
+        <CheckBox Name="InverseXCheckBox"  Content="Odbicie X względem środka" HorizontalAlignment="Left" Margin="751,26,0,0" VerticalAlignment="Top" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked"/>
 
 
     </Grid>
