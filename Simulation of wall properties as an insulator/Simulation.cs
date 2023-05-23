@@ -18,7 +18,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
         public double Mat1Width { get; set; }
 
         public double[] PositionX { get; set; }
-
+        public bool IsXInversed { get; set; }
 
         public double[] ThermalConductivity { get; set; }
         public double[] DerivativeOfThermalConductivity { get; set; }
@@ -68,10 +68,22 @@ namespace Simulation_of_wall_properties_as_an_insulator
         {
             TemperatureInsideOfWall[0] = LeftSideTemperature;    //Boundary Value
             TemperatureInsideOfWall[N - 1] = RightSideTemperature; //
+            if (IsXInversed)
+            {
+                for (int i = 1; i <= N; i++)
+                {
+                    PositionX[N - i] = H * i; // Calculate xs
+                }
+            }
+            
 
             for (int i = 0; i < N; i++)
             {
-                PositionX[i] = H * i; // Calculate xs
+                if (!IsXInversed)
+                {
+                    PositionX[i] = H * i; // Calculate xs
+                }
+                
 
                 ThermalConductivity[i] = Function(PositionX[i]); //Calculate thermal conductivity distribution
                 DerivativeOfThermalConductivity[i] = DerivativeOfFunction(PositionX[i]); // Calculate distribution of derivative of thermal conductivity 

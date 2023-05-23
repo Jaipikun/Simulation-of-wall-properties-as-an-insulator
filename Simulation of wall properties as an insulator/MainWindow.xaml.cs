@@ -3,6 +3,7 @@ using Syncfusion.UI.Xaml.Charts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -86,7 +87,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
                 int xID = GraphDataX.SelectedIndex;
                 int yID = GraphDataY.SelectedIndex;
                 bool TaskFinished = false;
-                
+                wall.IsXInversed = InverseX;
                 if(FunctionList.SelectedIndex == 4 && double.TryParse(WidthTxtBox.Text,out double Width) && double.TryParse(TauTxtBox.Text, out double Tau))
                 {
 
@@ -114,10 +115,7 @@ namespace Simulation_of_wall_properties_as_an_insulator
                 {
                     try
                     {
-                        if (InverseX)
-                        {
-                            wall.InverseX();
-                        }
+                        
                         WPF1.Plot.AddScatter(wall.GetData(xID), wall.GetData(yID));
                         WPF1.Refresh();
                     }
