@@ -70,9 +70,9 @@ namespace Simulation_of_wall_properties_as_an_insulator
             TemperatureInsideOfWall[N - 1] = RightSideTemperature; //
             if (IsXInversed)
             {
-                for (int i = 1; i <= N; i++)
+                for (int i = 0; i < N; i++)
                 {
-                    PositionX[N - i] = H * i; // Calculate xs
+                    PositionX[N - i - 1] = H * i; // Calculate xs
                 }
             }
             
